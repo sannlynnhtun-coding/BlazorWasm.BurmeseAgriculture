@@ -29,7 +29,11 @@
 
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="assets/img/favicons/ms-icon-144x144.png">
-    <meta name="theme-color" content="#ffffff">
+    <!-- <meta name="theme-color" content="#ffffff"> -->
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+    <link href="_content/MudBlazor/MudBlazor.min.css" rel="stylesheet" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,100;9..40,200;9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=Lexend:wght@300;400;500;600;700;800;900&family=Lobster&display=swap"
@@ -71,6 +75,14 @@
             .blazor-error-boundary::after {
                 content: "An error has occurred."
             }
+
+        ul {
+            list-style-type: none;
+        }
+
+        button.mud-button-root.mud-button.mud-button-filled.mud-button-filled-primary.mud-button-filled-size-medium{
+    background: #017d03;
+        }
     </style>
 </head>
 
@@ -99,6 +111,7 @@
     </div>
     <script src="_framework/blazor.webassembly.js"></script>
     <script>navigator.serviceWorker.register('service-worker.js');</script>
+    <script src="_content/MudBlazor/MudBlazor.min.js"></script>
 
     <script>
         window.loadJs = function (sourceUrls) {
