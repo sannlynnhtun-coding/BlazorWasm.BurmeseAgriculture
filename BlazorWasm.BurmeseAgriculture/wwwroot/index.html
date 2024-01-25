@@ -100,9 +100,43 @@
     <script src="_framework/blazor.webassembly.js"></script>
     <script>navigator.serviceWorker.register('service-worker.js');</script>
 
+    <script>
+        window.loadJs = function (sourceUrls) {
+            // console.log({ sourceUrls });
+            if (!Array.isArray(sourceUrls) || sourceUrls.length === 0) {
+                console.error("Invalid source URLs");
+                return;
+            }
+
+            $('[data-id="script"]').remove();
+
+            sourceUrls.forEach(function (sourceUrl) {
+                if (typeof sourceUrl !== "string" || sourceUrl.length === 0) {
+                    console.error("Invalid source URL in the array");
+                    return;
+                }
+
+                var tag = document.createElement('script');
+                tag.src = sourceUrl;
+                tag.type = "text/javascript";
+                tag.setAttribute('data-id', 'script');
+
+                tag.onload = function () {
+                    console.log("Script loaded successfully: " + sourceUrl);
+                };
+
+                tag.onerror = function () {
+                    console.error("Failed to load script: " + sourceUrl);
+                };
+
+                document.body.appendChild(tag);
+            });
+        };
+    </script>
+
     <script src="assets/js/vendor/jquery-3.6.0.min.js"></script>
     <script src="assets/js/app.min.js"></script>
-    <script src="assets/js/main.js"></script>
+    <!-- <script src="assets/js/main.js"></script> -->
 </body>
 
 </html>

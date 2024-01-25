@@ -1,11 +1,11 @@
 {
-  "name": "BlazorWasm.BurmeseAgriculture",
-  "short_name": "BlazorWasm.BurmeseAgriculture",
+  "name": "Burmese Agriculture",
+  "short_name": "Burmese Agriculture",
   "id": "./",
   "start_url": "./",
   "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": "#03173d",
+  "theme_color": "#017d03",
   "prefer_related_applications": false,
   "icons": [
     {
