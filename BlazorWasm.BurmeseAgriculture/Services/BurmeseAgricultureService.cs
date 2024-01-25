@@ -33,6 +33,12 @@ namespace BlazorWasm.BurmeseAgriculture.Services
             return model;
         }
 
+        public async Task<AgricultureModel> GetById(string id)
+        {
+            var response = await DataAsync();
+            return response.FirstOrDefault(x => x.Id == id)!;
+        }
+
         private async Task<List<AgricultureModel>> DataAsync()
         {
             if (Agricultures is not null) return Agricultures;

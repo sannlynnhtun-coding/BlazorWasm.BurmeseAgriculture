@@ -1,4 +1,5 @@
 ﻿using BlazorWasm.BurmeseAgriculture.Models;
+using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using Newtonsoft.Json;
 using System.Net.Http.Json;
@@ -10,7 +11,17 @@ namespace BlazorWasm.BurmeseAgriculture.Pages
     public partial class Home
     {
         private List<AgricultureModel> DataList = new List<AgricultureModel>();
+        private AgricultureModel? Data { get; set; }
         private int pageCount = 0;
+
+        [Parameter]
+        public string id { get; set; }
+
+        protected override async Task OnParametersSetAsync()
+        {
+            Data = await BurmeseAgricultureService.GetById(id);
+            StateHasChanged();
+        }
 
         private async Task LoadJavaScript()
         {
@@ -41,6 +52,12 @@ namespace BlazorWasm.BurmeseAgriculture.Pages
         private async void PageChanged(int i)
         {
             await List(i);
+        }
+
+        private async Task Back()
+        {
+            Data = null;
+            await List();
         }
     }
 }

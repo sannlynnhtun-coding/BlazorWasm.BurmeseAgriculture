@@ -1,7 +1,111 @@
 ﻿@page "/"
+@page "/{id}"
 @inject IJSRuntime JsRuntime
 @inject BurmeseAgricultureService BurmeseAgricultureService
 
+@if(Data is not null)
+{
+    <div class="container" style="margin-top: 160px;">
+    <div class="row">
+        <div class="col-xxl-12 col-lg-7">
+            <div class="th-blog blog-single">
+                <div class="blog-img"><img src="data/img/@(Data.Title).jpg" alt="Blog Image"></div>
+                <div class="blog-content">
+                    <div class="blog-meta"><a class="author" href="blog.html"><i class="far fa-user"></i>By @Data.Author</a>
+                        <a href="blog.html"><i class="far fa-calendar"></i> @Data.Date.ToString("dd MMMM, yyyy")</a> <a
+                            href="blog-details.html"><i class="far fa-comments"></i>Comments (3)</a></div>
+                    <h2 class="blog-title">@Data.Title</h2>
+                    <p>@Data.Content</p>
+                    <div class="share-links clearfix">
+                        <div class="row justify-content-between">
+                            <div class="col-sm-auto"><span class="share-links-title">Tags:</span>
+                                <div class="tagcloud"><a href="blog.html">Agriculture</a> <a
+                                        href="blog.html">Organic</a></div>
+                            </div>
+                            <div class="col-sm-auto text-xl-end"><span class="share-links-title">Share On:</span>
+                                <div class="th-social"><a href="https://facebook.com/" target="_blank"><i
+                                            class="fab fa-facebook-f"></i></a> <a href="https://twitter.com/"
+                                        target="_blank"><i class="fab fa-twitter"></i></a> <a
+                                        href="https://linkedin.com/" target="_blank"><i
+                                            class="fab fa-linkedin-in"></i></a> <a href="https://instagram.com/"
+                                        target="_blank"><i class="fab fa-instagram"></i></a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="th-comments-wrap">
+                <h2 class="blog-inner-title h4"><i class="far fa-comments"></i> Comments (03)</h2>
+                <ul class="comment-list">
+                    <li class="th-comment-item">
+                        <div class="th-post-comment">
+                            <div class="comment-avater"><img src="assets/img/blog/comment-author-1.jpg"
+                                    alt="Comment Author"></div>
+                            <div class="comment-content"><span class="commented-on"><i class="far fa-calendar"></i>14
+                                    March, 2023</span>
+                                <h3 class="name">Adam Jhon</h3>
+                                <p class="text">Collaboratively empower multifunctional e-commerce for prospective
+                                    applications. Seamlessly productivate plug and play markets.</p>
+                                <div class="reply_and_edit"><a href="blog-details.html" class="reply-btn"><i
+                                            class="fas fa-reply"></i>Reply</a></div>
+                            </div>
+                        </div>
+                        <ul class="children">
+                            <li class="th-comment-item">
+                                <div class="th-post-comment">
+                                    <div class="comment-avater"><img src="assets/img/blog/comment-author-2.jpg"
+                                            alt="Comment Author"></div>
+                                    <div class="comment-content"><span class="commented-on"><i
+                                                class="far fa-calendar"></i>15 March, 2023</span>
+                                        <h3 class="name">Jusctin Dacon</h3>
+                                        <p class="text">Competently provide access to fully researched methods of
+                                            empowerment without sticky models.</p>
+                                        <div class="reply_and_edit"><a href="blog-details.html" class="reply-btn"><i
+                                                    class="fas fa-reply"></i>Reply</a></div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="th-comment-item">
+                        <div class="th-post-comment">
+                            <div class="comment-avater"><img src="assets/img/blog/comment-author-3.jpg"
+                                    alt="Comment Author"></div>
+                            <div class="comment-content"><span class="commented-on"><i class="far fa-calendar"></i>16
+                                    March, 2023</span>
+                                <h3 class="name">Jacklin July</h3>
+                                <p class="text">Collaboratively empower multifunctional e-commerce for prospective
+                                    applications. Seamlessly productivate plug and play markets.</p>
+                                <div class="reply_and_edit"><a href="blog-details.html" class="reply-btn"><i
+                                            class="fas fa-reply"></i>Reply</a></div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="th-comment-form">
+                <div class="form-title">
+                    <h3 class="blog-inner-title h4 mb-2"><i class="fa-solid fa-reply"></i> Leave a Comment</h3>
+                    <p class="form-text">Your email address will not be published. Required fields are marked *</p>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 form-group"><input type="text" placeholder="Your Name*" class="form-control">
+                        <i class="far fa-user"></i></div>
+                    <div class="col-md-6 form-group"><input type="text" placeholder="Your Email*" class="form-control">
+                        <i class="far fa-envelope"></i></div>
+                    <div class="col-12 form-group"><input type="text" placeholder="Website" class="form-control"> <i
+                            class="far fa-globe"></i></div>
+                    <div class="col-12 form-group"><textarea placeholder="Write a Comment*"
+                            class="form-control"></textarea> <i class="far fa-pencil"></i></div>
+                    <div class="col-12 form-group mb-0"><button class="th-btn">Post Comment</button></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+}
+else
+{
 <section class="overflow-hidden space bg-smoke2" id="blog-sec" style="margin-top: 80px;">
     <div class="shape-mockup" data-top="0" data-left="0">
         <img src="assets/img/shape/vector_shape_1.png" alt="shape">
@@ -55,7 +159,7 @@
                                 @* <p class="box-text">
                                     Organic foods can be more expensive due to the labor-intensive nature.
                                 </p> *@
-                                <a href="blog-details.html" class="th-btn">
+                                <a href="@item.Id" class="th-btn">
                                     Read More<i class="fas fa-chevrons-right ms-2"></i>
                                 </a>
                             </div>
@@ -65,7 +169,8 @@
             }
         </div>
     </div>
-</section>
+</section>    
+}
 <div class="py-5 mt-1 bg-smoke2">
     <div class="container th-container py-md-4">
         <div class="swiper th-slider" id="blogSlider1"
